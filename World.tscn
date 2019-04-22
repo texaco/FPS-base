@@ -63,7 +63,7 @@ material/0 = null
 shape = SubResource( 2 )
 
 [node name="Player" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000941277, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83843, 0.00516641, 2.34625 )
 script = ExtResource( 2 )
 
 [node name="Head" type="Spatial" parent="Player"]
@@ -76,8 +76,8 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.59
 shape = SubResource( 3 )
 
 [node name="Foot" parent="Player" instance=ExtResource( 3 )]
-
-[node name="StairCatcher" type="RayCast" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.441392, -0.610601 )
+cast_to = Vector3( 0, -0.5, 0 )
 
 [node name="Floor" type="MeshInstance" parent="."]
 transform = Transform( 1536.57, 0, 0, 0, 1.83234e-05, 1536.57, 0, -1536.57, 1.83234e-05, 0, 0, 0 )

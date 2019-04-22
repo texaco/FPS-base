@@ -25,16 +25,14 @@ var in_air = 0
 var has_contact = false
 
 #slope variables
-const MAX_SLOPE_ANGLE = 35
+const MAX_SLOPE_ANGLE = 10
 
 #stair variables
 const MAX_STAIR_SLOPE = 20
 const STAIR_JUMP_HEIGHT = 6
 
-# debug funtions
-var floor_angle
 
-func _process(delta):
+func _physics_process(delta):
 	aim()
 	if flying:
 		fly(delta)
@@ -45,7 +43,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		camera_change = event.relative
 	if Input.is_action_just_pressed("ui_page_down"):
-		print (floor_angle)
+		print ($Foot.slopeAngle)
 		
 func getDirection():
 	var dir = Vector3()
@@ -84,14 +82,6 @@ func walk(delta):
 	if (has_contact and !is_on_floor()):
 		move_and_collide(Vector3(0, -1, 0))
 	
-	if (direction.length() > 0 and $StairCatcher.is_colliding()):
-		var stair_normal = $StairCatcher.get_collision_normal()
-		var stair_angle = rad2deg(acos(stair_normal.dot(Vector3(0, 1, 0))))
-		if stair_angle < MAX_STAIR_SLOPE:
-			velocity.y = STAIR_JUMP_HEIGHT
-			has_contact = false
-	
-	
 	var temp_velocity = velocity
 	temp_velocity.y = 0
 	
@@ -100,7 +90,6 @@ func walk(delta):
 		speed = MAX_RUNNING_SPEED
 	else:
 		speed = MAX_SPEED
-	
 	
 	# where would the player go at max speed
 	var target = direction * speed
@@ -127,9 +116,6 @@ func walk(delta):
 	if !has_contact:
 		print(in_air)
 		in_air += 1
-		
-	$StairCatcher.translation.x = direction.x
-	$StairCatcher.translation.z = direction.z
 	
 func fly(delta):
 	# reset the direction of the player
@@ -155,13 +141,3 @@ func aim():
 			$Head/Camera.rotate_x(deg2rad(change))
 			camera_angle += change
 		camera_change = Vector2()
-
-
-func _on_Area_body_entered( body ):
-	if body.name == "Player":
-		flying = true
-
-
-func _on_Area_body_exited( body ):
-	if body.name == "Player":
-		flying = false
