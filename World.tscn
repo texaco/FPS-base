@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://Foot.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -62,7 +63,7 @@ material/0 = null
 shape = SubResource( 2 )
 
 [node name="Player" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.247506, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000941277, 0 )
 script = ExtResource( 2 )
 
 [node name="Head" type="Spatial" parent="Player"]
@@ -74,10 +75,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5962, 4.37114e-08 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.5962, 0 )
 shape = SubResource( 3 )
 
-[node name="Foot" type="RayCast" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.320427, 0 )
-enabled = true
-cast_to = Vector3( 0, -0.4, 0 )
+[node name="Foot" parent="Player" instance=ExtResource( 3 )]
 
 [node name="StairCatcher" type="RayCast" parent="Player"]
 
@@ -92,7 +90,7 @@ material/0 = SubResource( 6 )
 shape = SubResource( 5 )
 
 [node name="ramp" type="MeshInstance" parent="."]
-transform = Transform( 14.2982, 0, 0, 0, 9.79443, 10.4167, 0, -10.4167, 9.79443, -8.61919, 1.41953, -0.178701 )
+transform = Transform( 14.2982, 0, 0, 0, 8.92535, 11.1704, 0, -11.1704, 8.92535, -8.61919, 1.41953, -0.178701 )
 mesh = SubResource( 7 )
 material/0 = SubResource( 8 )
 

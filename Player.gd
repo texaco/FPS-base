@@ -31,6 +31,9 @@ const MAX_SLOPE_ANGLE = 35
 const MAX_STAIR_SLOPE = 20
 const STAIR_JUMP_HEIGHT = 6
 
+# debug funtions
+var floor_angle
+
 func _process(delta):
 	aim()
 	if flying:
@@ -41,6 +44,8 @@ func _process(delta):
 func _input(event):
 	if event is InputEventMouseMotion:
 		camera_change = event.relative
+	if Input.is_action_just_pressed("ui_page_down"):
+		print (floor_angle)
 		
 func getDirection():
 	var dir = Vector3()
@@ -67,9 +72,8 @@ func walk(delta):
 	
 	if is_on_floor():
 		has_contact = true
-		var n = $Foot.get_collision_normal()
-		var floor_angle = rad2deg(acos(n.dot(Vector3(0, 1, 0))))
-		if floor_angle > MAX_SLOPE_ANGLE:
+		
+		if $Foot.getSlopeAngle() > MAX_SLOPE_ANGLE:
 			velocity.y += gravity * delta
 		
 	else:
