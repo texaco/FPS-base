@@ -31,8 +31,6 @@ const MAX_SLOPE_ANGLE = 10
 const MAX_STAIR_SLOPE = 20
 const STAIR_JUMP_HEIGHT = 6
 
-# Debug variables
-var debug = false
 
 func _process(delta):
 	aim()
@@ -46,7 +44,7 @@ func _input(event):
 		camera_change = event.relative
 	if Input.is_action_just_pressed("fly"):
 		flying = !flying
-	if debug and Input.is_action_just_pressed("ui_page_down"):
+	if $WORLD/DEBUG and Input.is_action_just_pressed("ui_page_down"):
 		print ($Foot.slopeAngle)
 	direction = getDirection()
 	
@@ -116,7 +114,7 @@ func walk(delta):
 	# move
 	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
 	
-	if debug and !has_contact:
+	if $WORLD/DEBUG and !has_contact:
 		print(in_air)
 		in_air += 1
 	
