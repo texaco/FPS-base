@@ -14,8 +14,8 @@ var flying = false
 
 #walk variables
 var gravity = -9.8 * 3
-const MAX_SPEED = 10
-const MAX_RUNNING_SPEED = 15
+const MAX_SPEED = 5
+const MAX_RUNNING_SPEED = 10
 const ACCEL = 2
 const DEACCEL = 6
 
@@ -32,7 +32,7 @@ const MAX_STAIR_SLOPE = 20
 const STAIR_JUMP_HEIGHT = 6
 
 # Debug variables
-var debug = true
+var debug = false
 
 func _process(delta):
 	aim()
@@ -48,7 +48,8 @@ func _input(event):
 		flying = !flying
 	if debug and Input.is_action_just_pressed("ui_page_down"):
 		print ($Foot.slopeAngle)
-		
+	direction = getDirection()
+	
 func getDirection():
 	var dir = Vector3()
 
@@ -67,8 +68,6 @@ func getDirection():
 	return dir
 	
 func walk(delta):
-	direction = getDirection()
-	
 	direction.y = 0
 	direction = direction.normalized()
 	
@@ -122,9 +121,6 @@ func walk(delta):
 		in_air += 1
 	
 func fly(delta):
-	# reset the direction of the player
-	direction = getDirection()
-	
 	direction = direction.normalized()
 	
 	# where would the player go at max speed
