@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://Foot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://DynamicTexture.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -98,4 +99,7 @@ material/0 = SubResource( 8 )
 
 [node name="CollisionShape" type="CollisionShape" parent="ramp/StaticBody"]
 shape = SubResource( 9 )
+
+[node name="Scene" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3593, 2.43217, 4.97608 )
 
