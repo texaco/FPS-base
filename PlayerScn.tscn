@@ -10,7 +10,6 @@ height = 2.0
 [node name="PlayerScn" type="Spatial"]
 
 [node name="Player" type="KinematicBody" parent="."]
-editor/display_folded = true
 script = ExtResource( 1 )
 
 [node name="Head" type="Spatial" parent="Player"]
