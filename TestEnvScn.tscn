@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="ConvexPolygonShape" id=2]
+points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
+
+[sub_resource type="QuadMesh" id=6]
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.4, 0.631373, 0.305882, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=8]
+points = PoolVector3Array( -0.5, -0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0 )
+
+[node name="TestEnvScn" type="Spatial"]
+editor/display_folded = true
+
+[node name="Box" type="MeshInstance" parent="."]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0609549, 0.829671, -8.21456 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Box"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Box/StaticBody"]
+shape = SubResource( 2 )
+
+[node name="Box3" type="MeshInstance" parent="."]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.42659, 2.20644, -2.78483 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Box3"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Box3/StaticBody"]
+shape = SubResource( 2 )
+
+[node name="Box2" type="MeshInstance" parent="."]
+editor/display_folded = true
+transform = Transform( 2.6733, 0, 0, 0, 2.6733, 0, 0, 0, 2.6733, -8.68153, 1.51924, -8.21456 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Box2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Box2/StaticBody"]
+shape = SubResource( 2 )
+
+[node name="ramp" type="MeshInstance" parent="."]
+editor/display_folded = true
+transform = Transform( 14.2982, 0, 0, 0, 8.92535, 11.1704, 0, -11.1704, 8.92535, -8.61919, 1.41953, -0.178701 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
+
+[node name="StaticBody" type="StaticBody" parent="ramp"]
+
+[node name="CollisionShape" type="CollisionShape" parent="ramp/StaticBody"]
+shape = SubResource( 8 )
+

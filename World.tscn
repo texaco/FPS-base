@@ -1,105 +1,36 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
-[ext_resource path="res://Player.gd" type="Script" id=2]
-[ext_resource path="res://Foot.tscn" type="PackedScene" id=3]
-[ext_resource path="res://DynamicTexture.tscn" type="PackedScene" id=4]
+[ext_resource path="res://DynamicTexture.tscn" type="PackedScene" id=2]
+[ext_resource path="res://PlayerScn.tscn" type="PackedScene" id=3]
+[ext_resource path="res://TestEnvScn.tscn" type="PackedScene" id=4]
 
-[sub_resource type="CubeMesh" id=1]
+[sub_resource type="QuadMesh" id=3]
 
-[sub_resource type="ConvexPolygonShape" id=2]
-points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
-
-[sub_resource type="CapsuleShape" id=3]
-radius = 0.6
-height = 2.0
-
-[sub_resource type="QuadMesh" id=4]
-
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 0.372549, 0.184314, 0.184314, 1 )
 
-[sub_resource type="ConvexPolygonShape" id=6]
-points = PoolVector3Array( -0.5, -0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0 )
-
-[sub_resource type="QuadMesh" id=7]
-
-[sub_resource type="SpatialMaterial" id=8]
-albedo_color = Color( 0.4, 0.631373, 0.305882, 1 )
-
-[sub_resource type="ConvexPolygonShape" id=9]
+[sub_resource type="ConvexPolygonShape" id=5]
 points = PoolVector3Array( -0.5, -0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0 )
 
 [node name="World" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="Box" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0609549, 0.829671, -8.21456 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="StaticBody" type="StaticBody" parent="Box"]
-
-[node name="CollisionShape" type="CollisionShape" parent="Box/StaticBody"]
-shape = SubResource( 2 )
-
-[node name="Box3" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.42659, 2.20644, -2.78483 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="StaticBody" type="StaticBody" parent="Box3"]
-
-[node name="CollisionShape" type="CollisionShape" parent="Box3/StaticBody"]
-shape = SubResource( 2 )
-
-[node name="Box2" type="MeshInstance" parent="."]
-transform = Transform( 2.6733, 0, 0, 0, 2.6733, 0, 0, 0, 2.6733, -8.68153, 1.51924, -8.21456 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="StaticBody" type="StaticBody" parent="Box2"]
-
-[node name="CollisionShape" type="CollisionShape" parent="Box2/StaticBody"]
-shape = SubResource( 2 )
-
-[node name="Player" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83843, 0.00516641, 2.34625 )
-script = ExtResource( 2 )
-
-[node name="Head" type="Spatial" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5962, 4.37114e-08 )
-
-[node name="Camera" type="Camera" parent="Player/Head"]
-
-[node name="CollisionShape" type="CollisionShape" parent="Player"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.5962, 0 )
-shape = SubResource( 3 )
-
-[node name="Foot" parent="Player" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.441392, -0.610601 )
-cast_to = Vector3( 0, -0.5, 0 )
-
 [node name="Floor" type="MeshInstance" parent="."]
+editor/display_folded = true
 transform = Transform( 1536.57, 0, 0, 0, 1.83234e-05, 1536.57, 0, -1536.57, 1.83234e-05, 0, 0, 0 )
-mesh = SubResource( 4 )
-material/0 = SubResource( 5 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
 
 [node name="StaticBody" type="StaticBody" parent="Floor"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor/StaticBody"]
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
-[node name="ramp" type="MeshInstance" parent="."]
-transform = Transform( 14.2982, 0, 0, 0, 8.92535, 11.1704, 0, -11.1704, 8.92535, -8.61919, 1.41953, -0.178701 )
-mesh = SubResource( 7 )
-material/0 = SubResource( 8 )
-
-[node name="StaticBody" type="StaticBody" parent="ramp"]
-
-[node name="CollisionShape" type="CollisionShape" parent="ramp/StaticBody"]
-shape = SubResource( 9 )
-
-[node name="Scene" parent="." instance=ExtResource( 4 )]
+[node name="Scene" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3593, 2.43217, 4.97608 )
+
+[node name="PlayerScn" parent="." instance=ExtResource( 3 )]
+
+[node name="TestEnvScn" parent="." instance=ExtResource( 4 )]
 
