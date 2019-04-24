@@ -27,8 +27,8 @@ material/0 = SubResource( 4 )
 [node name="CollisionShape" type="CollisionShape" parent="Floor/StaticBody"]
 shape = SubResource( 5 )
 
-[node name="Scene" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3593, 2.43217, 4.97608 )
+[node name="DynamicTextureScn" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.0436387, 0, -0.999047, 0, 1, 0, 0.999047, 0, -0.0436387, 12.3593, 2.43217, 4.97608 )
 
 [node name="PlayerScn" parent="." instance=ExtResource( 3 )]
 
