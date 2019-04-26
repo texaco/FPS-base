@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://wtf.gd" type="Script" id=1]
+[ext_resource path="res://AnimationScn.gd" type="Script" id=1]
+[ext_resource path="res://wtf.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
 tracks/0/type = "value"
@@ -39,10 +40,11 @@ radius = 0.25
 height = 0.5
 
 [node name="AnimationScn" type="Spatial"]
+script = ExtResource( 1 )
 
 [node name="wtf" type="AnimationPlayer" parent="."]
 anims/LeaverAnimation = SubResource( 1 )
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="LeaverBase" type="MeshInstance" parent="."]
 mesh = SubResource( 2 )
@@ -80,4 +82,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2 )
 mesh = SubResource( 8 )
 material/0 = null
 
+[connection signal="body_entered" from="LeaverBase/Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_entered" from="LeaverBase/Area" to="wtf" method="_on_Area_body_entered"]

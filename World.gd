@@ -5,6 +5,7 @@ extends Spatial
 # var b = "text"
 
 const DEBUG = true
+signal show_menu
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,6 +18,8 @@ func _process(delta):
 		get_tree().quit()
 	if (Input.is_action_just_pressed("ui_home")):
 		get_tree().reload_current_scene()
+	if Input.is_action_just_pressed("ui_accept"):
+		emit_signal("show_menu")
 
 func _input(event):
 	if event is InputEventMouseButton:

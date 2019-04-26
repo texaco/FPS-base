@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://DynamicTexture.tscn" type="PackedScene" id=2]
 [ext_resource path="res://PlayerScn.tscn" type="PackedScene" id=3]
-[ext_resource path="res://TestEnvScn.tscn" type="PackedScene" id=4]
-[ext_resource path="res://AnimationScn.tscn" type="PackedScene" id=5]
+[ext_resource path="res://MenuScn.tscn" type="PackedScene" id=4]
+[ext_resource path="res://TestEnvScn.tscn" type="PackedScene" id=5]
+[ext_resource path="res://AnimationScn.tscn" type="PackedScene" id=6]
+[ext_resource path="res://SecretChamber.tscn" type="PackedScene" id=7]
 
 [sub_resource type="QuadMesh" id=1]
 
@@ -15,6 +17,7 @@ albedo_color = Color( 0.372549, 0.184314, 0.184314, 1 )
 points = PoolVector3Array( -0.5, -0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0 )
 
 [node name="World" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.37358, 0, 0 )
 script = ExtResource( 1 )
 
 [node name="Floor" type="MeshInstance" parent="."]
@@ -34,8 +37,16 @@ transform = Transform( -0.0436387, 0, -0.999047, 0, 1, 0, 0.999047, 0, -0.043638
 [node name="PlayerScn" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.553, 0, 5.47571 )
 
-[node name="TestEnvScn" parent="." instance=ExtResource( 4 )]
+[node name="MenuScn" parent="PlayerScn" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63113, 0 )
 
-[node name="AnimationScn" parent="." instance=ExtResource( 5 )]
+[node name="TestEnvScn" parent="." instance=ExtResource( 5 )]
+
+[node name="LeaverScn" parent="." instance=ExtResource( 6 )]
 transform = Transform( 0.00373558, 0, 0.419128, 0, 0.419144, 0, -0.419128, 0, 0.00373558, -21.2491, 2.38635, 6.1292 )
 
+[node name="SecretChamber" parent="." instance=ExtResource( 7 )]
+transform = Transform( -0.0196755, 0, 0.999806, 0, 1, 0, -0.999806, 0, -0.0196755, -25.223, 3.67293, 5.62002 )
+
+[connection signal="show_menu" from="." to="PlayerScn/MenuScn" method="_on_World_show_menu"]
+[connection signal="leaver_on" from="LeaverScn" to="SecretChamber" method="_on_LeaverScn_leaver_on"]
