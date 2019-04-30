@@ -1,6 +1,4 @@
-extends Spatial
+extends "parent_class.gd"
 
-
-
-func _on_World_show_menu():
-	$AnimationPlayer.play("Menu")
+func _ready():
+	rootScene().player_ui_node = $MenuPlayer

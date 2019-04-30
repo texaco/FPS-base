@@ -31,7 +31,13 @@ const MAX_SLOPE_ANGLE = 10
 const MAX_STAIR_SLOPE = 20
 const STAIR_JUMP_HEIGHT = 6
 
+var root_node
+var debug
 
+func _ready():
+	root_node = get_tree().get_root().get_node("World")
+	debug = root_node.DEBUG
+	
 func _process(delta):
 	aim()
 	if flying:
@@ -44,7 +50,7 @@ func _input(event):
 		camera_change = event.relative
 	if Input.is_action_just_pressed("fly"):
 		flying = !flying
-	if $WORLD/DEBUG and Input.is_action_just_pressed("ui_page_down"):
+	if debug and Input.is_action_just_pressed("ui_page_down"):
 		print ($Foot.slopeAngle)
 	direction = getDirection()
 	
@@ -114,7 +120,7 @@ func walk(delta):
 	# move
 	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
 	
-	if $WORLD/DEBUG and !has_contact:
+	if debug and !has_contact:
 		print(in_air)
 		in_air += 1
 	

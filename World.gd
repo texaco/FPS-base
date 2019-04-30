@@ -1,11 +1,8 @@
 extends Spatial
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 const DEBUG = true
-signal show_menu
+var player_ui_node
+var menuFolded = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,7 +16,12 @@ func _process(delta):
 	if (Input.is_action_just_pressed("ui_home")):
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("ui_accept"):
-		emit_signal("show_menu")
+		if menuFolded:
+			player_ui_node.play("MenuUnfold")
+		else:
+			player_ui_node.play("MenuFold")
+		
+		menuFolded = !menuFolded
 
 func _input(event):
 	if event is InputEventMouseButton:

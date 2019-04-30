@@ -82,5 +82,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2 )
 mesh = SubResource( 8 )
 material/0 = null
 
-[connection signal="body_entered" from="LeaverBase/Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_entered" from="LeaverBase/Area" to="wtf" method="_on_Area_body_entered"]
+[connection signal="body_entered" from="LeaverBase/Area" to="." method="_on_Area_body_entered"]
